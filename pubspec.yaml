@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   gsheets: ^0.4.2
   fluttertoast: ^8.2.2
+  googleapis: ^8.1.0
 
 dev_dependencies:
   flutter_test:
