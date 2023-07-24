@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:expense_tracker/api%20/google_sheets_api.dart';
+import 'package:expense_tracker/screens/3d_screen.dart';
 import 'package:expense_tracker/widgets/add_data.dart';
 import 'package:expense_tracker/widgets/total_balance_card.dart';
 import 'package:expense_tracker/widgets/transcation_widget.dart';
@@ -169,21 +170,23 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                           )
-                        : ListView.builder(
-                            itemCount:
-                                GoogleSheetsApi.currentTransccations.length,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: TranscationWidhget(
-                                    incomeExpense: GoogleSheetsApi
-                                        .currentTransccations[index][2],
-                                    transAmount: GoogleSheetsApi
-                                        .currentTransccations[index][1],
-                                    transName: GoogleSheetsApi
-                                        .currentTransccations[index][0]),
-                              );
-                            }))
+                        : GoogleSheetsApi.currentTransccations.isEmpty
+                            ? const Center(child: Text("No data founs"))
+                            : ListView.builder(
+                                itemCount:
+                                    GoogleSheetsApi.currentTransccations.length,
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(4.0),
+                                    child: TranscationWidhget(
+                                        incomeExpense: GoogleSheetsApi
+                                            .currentTransccations[index][2],
+                                        transAmount: GoogleSheetsApi
+                                            .currentTransccations[index][1],
+                                        transName: GoogleSheetsApi
+                                            .currentTransccations[index][0]),
+                                  );
+                                }))
                 // TranscationWidhget(
                 //     incomeExpense: "expense",
                 //     transAmount: "200",
@@ -193,6 +196,15 @@ class _HomeScreenState extends State<HomeScreen> {
             AddData(onTap: newTrans)
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const ThreeDScreen()),
+          );
+        },
+        child: const Icon(Icons.next_plan),
       ),
     );
   }

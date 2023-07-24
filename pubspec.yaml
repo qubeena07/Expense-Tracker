@@ -38,6 +38,8 @@ dependencies:
   gsheets: ^0.4.2
   fluttertoast: ^8.2.2
   googleapis: ^8.1.0
+  flutter_inappwebview: ^5.7.2+3
+
 
 dev_dependencies:
   flutter_test:
